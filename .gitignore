@@ -1,0 +1,33 @@
+# Игнорируем папку .history
+.history/
+
+# Игнорируем системные файлы
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Игнорируем логи
+*.log
+error_log
+debug.log
+
+# Игнорируем временные файлы
+*.tmp
+*.temp
+~$*
+
+# Игнорируем настройки IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Игнорируем node_modules если будут
+node_modules/
+
+# Игнорируем backup файлы
+*.backup
+*.bak
+
+# Игнорируем uploads если они попадут в тему
+uploads/

@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TechnoMix — интернет-магазин электроники</title>
+  <link rel="stylesheet" href="assets/css/reset.css">
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/responsive.css">
+</head>
+
+<body>
+
+  <header class="header">
+
+    <!-- Бургер-меню -->
+    <nav class="burger-menu" id="burgerMenu">
+      <ul class="burger-menu__list">
+
+        <li class="burger-menu__item">
+          <a href="#">
+            <img src="assets/images/icons/orders.svg" alt="">
+            Заказы
+          </a>
+        </li>
+
+        <li class="burger-menu__item">
+          <a href="#">
+            <img src="assets/images/icons/messages.svg" alt="">
+            Переписка с продавцами
+          </a>
+        </li>
+
+        <li class="burger-menu__item">
+          <a href="#">
+            <img src="assets/images/icons/cart.svg" alt="">
+            Корзина
+          </a>
+        </li>
+
+        <li class="burger-menu__item">
+          <a href="#">
+            <img src="assets/images/icons/heart.svg" alt="">
+            Список желаний
+          </a>
+        </li>
+
+        <li class="burger-menu__item">
+          <a href="#">
+            <img src="assets/images/icons/history.svg" alt="">
+            Просмотренные товары
+          </a>
+        </li>
+
+        <li class="burger-menu__item">
+          <a href="#">
+            <img src="assets/images/icons/reviews.svg" alt="">
+            Отзывы
+          </a>
+        </li>
+
+        <li class="burger-menu__item">
+          <a href="#">
+            <img src="assets/images/icons/parcel.svg" alt="">
+            Посылки
+          </a>
+        </li>
+
+        <li class="burger-menu__item">
+          <a href="#">
+            <img src="assets/images/icons/wallet.svg" alt="">
+            Кошелёк
+          </a>
+        </li>
+
+        <li class="burger-menu__item">
+          <a href="#">
+            <img src="assets/images/icons/subscribe.svg" alt="">
+            Подписки
+          </a>
+        </li>
+
+      </ul>
+    </nav>
+
+    <div class="overlay" id="overlay"></div>
+
+    <div class="container header__inner">
+
+      <button class="header__burger" id="burgerBtn" aria-label="Открыть меню">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+
+      <div class="header__logo">
+        <a href="#">TechnoMix</a>
+      </div>
+
+      <form class="header__search" action="#" method="get">
+        <input type="text" class="header__input" placeholder="Что вы ищете?" name="s">
+        <button type="submit" class="header__search-btn" aria-label="Найти"></button>
+      </form>
+
+      <div class="header__cart">
+        <img src="assets/images/icons/cart.svg" alt="Корзина">
+        <span class="header__cart-count">0</span>
+      </div>
+
+    </div>
+  </header>
+
+  <main class="main">
+    <div class="main__wrapper">
+      <section class="catalog-section">
+
+        <aside class="sidebar">
+          <nav class="sidebar__nav">
+            <ul class="sidebar__menu">
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/energy.svg" alt="Энергообеспечение">
+                  </div>
+                  <span class="sidebar__text">Энергообеспечение</span>
+                </a>
+              </li>
+
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/smartphones.svg" alt="Смартфоны">
+                  </div>
+                  <span class="sidebar__text">Смартфоны и телефоны</span>
+                </a>
+              </li>
+
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/laptops.svg" alt="Ноутбуки">
+                  </div>
+                  <span class="sidebar__text">Ноутбуки и планшеты</span>
+                </a>
+              </li>
+
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/kitchen.svg" alt="Кухонная техника">
+                  </div>
+                  <span class="sidebar__text">Техника для кухни</span>
+                </a>
+              </li>
+
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/home.svg" alt="Техника для дома">
+                  </div>
+                  <span class="sidebar__text">Техника для дома</span>
+                </a>
+              </li>
+
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/tv.svg" alt="Телевизоры">
+                  </div>
+                  <span class="sidebar__text">Телевизоры</span>
+                </a>
+              </li>
+
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/smartwatch.svg" alt="Смарт-часы">
+                  </div>
+                  <span class="sidebar__text">Смарт-часы</span>
+                </a>
+              </li>
+
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/audio.svg" alt="Аудио техника">
+                  </div>
+                  <span class="sidebar__text">Аудио, фото, видео</span>
+                </a>
+              </li>
+
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/gaming.svg" alt="Игровые консоли">
+                  </div>
+                  <span class="sidebar__text">Игровые консоли</span>
+                </a>
+              </li>
+
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/beauty.svg" alt="Красота и здоровье">
+                  </div>
+                  <span class="sidebar__text">Красота и здоровье</span>
+                </a>
+              </li>
+
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/dishes.svg" alt="Посуда">
+                  </div>
+                  <span class="sidebar__text">Посуда</span>
+                </a>
+              </li>
+
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/chemistry.svg" alt="Бытовая химия">
+                  </div>
+                  <span class="sidebar__text">Бытовая химия</span>
+                </a>
+              </li>
+
+              <li class="sidebar__item">
+                <a href="#" class="sidebar__link">
+                  <div class="sidebar__icon">
+                    <img src="assets/images/sidebar/kids.svg" alt="Детские товары">
+                  </div>
+                  <span class="sidebar__text">Детские товары</span>
+                </a>
+              </li>
+            </ul>
+          </nav>
+        </aside>
+
+        <!-- КАРУСЕЛЬ -->
+        <div class="carousel">
+          <div class="carousel__inner">
+
+            <div class="card">
+              <img src="assets/images/carousel/product1.png" alt="Товар 1">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product2.png" alt="Товар 2">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product3.png" alt="Товар 3">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product4.png" alt="Товар 4">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product5.png" alt="Товар 5">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product6.png" alt="Товар 6">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product7.png" alt="Товар 7">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product8.png" alt="Товар 8">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product9.png" alt="Товар 9">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product10.png" alt="Товар 10">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product11.png" alt="Товар 11">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product12.png" alt="Товар 12">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product13.png" alt="Товар 13">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product14.png" alt="Товар 14">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product15.png" alt="Товар 15">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product16.png" alt="Товар 16">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product17.png" alt="Товар 17">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product18.png" alt="Товар 18">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product19.png" alt="Товар 19">
+            </div>
+            <div class="card">
+              <img src="assets/images/carousel/product20.png" alt="Товар 20">
+            </div>
+
+          </div>
+
+          <!-- КНОПКИ -->
+          <button class="carousel__btn carousel__btn--prev">&#10094;</button>
+          <button class="carousel__btn carousel__btn--next">&#10095;</button>
+
+        </div>
+
+      </section>
+
+      <section class="about-section">
+        <div class="main__wrapper">
+          <div class="about-container">
+
+            <div class="about-card">
+              <div class="about-content">
+
+                <h3>О TechnoMix</h3>
+                <p>TechnoMix — ведущий интернет-магазин электроники с 2015 года. Мы предлагаем широкий ассортимент
+                  качественной техники от проверенных брендов по доступным ценам.</p>
+                <button>Узнать больше</button>
+              </div>
+            </div>
+
+            <div class="about-card">
+              <div class="about-content">
+
+                <h3>Как сделать заказ</h3>
+                <p>Просто выберите товар, добавьте в корзину и оформите заказ. Наш менеджер свяжется с вами для
+                  подтверждения в течение 15 минут.</p>
+                <button>Инструкция</button>
+              </div>
+            </div>
+
+            <div class="about-card">
+              <div class="about-content">
+
+                <h3>Гарантии и сервис</h3>
+                <p>Все товары имеют официальную гарантию до 3 лет. Бесплатная доставка по городу, сервисное обслуживание
+                  и техническая поддержка 24/7.</p>
+                <button>Подробнее</button>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </section>
+
+      <!-- Gradient Buttons Section -->
+      <section class="gradient-buttons-section">
+        <div class="main__wrapper">
+          <div class="buttons-container">
+            <button class="gradient-btn btn-tech">Техника для дома</button>
+            <button class="gradient-btn btn-gadgets">Смартфоны и гаджеты</button>
+            <button class="gradient-btn btn-kitchen">Кухонная техника</button>
+            <button class="gradient-btn btn-entertainment">ТВ и развлечения</button>
+            <button class="gradient-btn btn-computers">Ноутбуки и компьютеры</button>
+            <button class="gradient-btn btn-audio">Аудио и наушники</button>
+          </div>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__container">
+      <ul class="footer__social">
+        <li><a href="#"><img src="assets/images/icons/twitter.svg" alt="Twitter"></a></li>
+        <li><a href="#"><img src="assets/images/icons/youtube.svg" alt="YouTube"></a></li>
+        <li><a href="#"><img src="assets/images/icons/facebook.svg" alt="Facebook"></a></li>
+        <li><a href="#"><img src="assets/images/icons/whatsapp.svg" alt="WhatsApp"></a></li>
+        <li><a href="#"><img src="assets/images/icons/phone.svg" alt="Phone"></a></li>
+      </ul>
+      <p class="footer__copy">© 2025. Все права защищены.</p>
+    </div>
+  </footer>
+
+  <script src="assets/js/main.js"></script>
+  <script src="assets/js/carousel.js"></script>
+</body>
+
+</html>
