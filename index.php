@@ -2,75 +2,132 @@
 
   <header class="header">
 
-    <!-- Бургер-меню -->
-    <nav class="burger-menu" id="burgerMenu">
-      <ul class="burger-menu__list">
-
+<!-- Бургер-меню -->
+<nav class="burger-menu" id="burgerMenu" style="background-color: <?php echo get_field('burger_menu_bg_color') ?: '#fff'; ?>;">
+    <ul class="burger-menu__list">
+        <?php
+        // Динамические пункты меню из ACF
+        if (have_rows('burger_menu_items')) :
+            $text_color = get_field('burger_menu_text_color') ?: '#333';
+            $hover_bg_color = get_field('burger_menu_hover_bg_color') ?: '#FF9500';
+            $hover_text_color = get_field('burger_menu_hover_text_color') ?: '#fff';
+            while (have_rows('burger_menu_items')) : the_row();
+                $icon = get_sub_field('menu_icon');
+                $text = get_sub_field('menu_text');
+                $link = get_sub_field('menu_link');
+        ?>
         <li class="burger-menu__item">
-          <a href="#">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/orders.svg" alt="Заказы">
-            Заказы
-          </a>
+            <a href="<?php echo esc_url($link ?: '#'); ?>"
+               style="color: <?php echo esc_attr($text_color); ?>;"
+               data-text-color="<?php echo esc_attr($text_color); ?>"
+               data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+               data-hover-text="<?php echo esc_attr($hover_text_color); ?>">
+                <?php if ($icon): ?>
+                    <img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr(wp_strip_all_tags($text)); ?>">
+                <?php endif; ?>
+                <?php echo apply_filters('the_content', $text); ?>
+            </a>
+        </li>
+        <?php
+            endwhile;
+        else :
+            // Fallback - статическое меню если ACF не настроено
+            $text_color = get_field('burger_menu_text_color') ?: '#333';
+            $hover_bg_color = get_field('burger_menu_hover_bg_color') ?: '#FF9500';
+            $hover_text_color = get_field('burger_menu_hover_text_color') ?: '#fff';
+        ?>
+        <li class="burger-menu__item">
+            <a href="#" style="color: <?php echo esc_attr($text_color); ?>;"
+               data-text-color="<?php echo esc_attr($text_color); ?>"
+               data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+               data-hover-text="<?php echo esc_attr($hover_text_color); ?>">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/orders.svg" alt="Заказы">
+                Заказы
+            </a>
         </li>
 
         <li class="burger-menu__item">
-          <a href="#">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/messages.svg" alt="Переписка с продавцами">
-            Переписка с продавцами
-          </a>
+            <a href="#" style="color: <?php echo esc_attr($text_color); ?>;"
+               data-text-color="<?php echo esc_attr($text_color); ?>"
+               data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+               data-hover-text="<?php echo esc_attr($hover_text_color); ?>">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/messages.svg" alt="Переписка с продавцами">
+                Переписка с продавцами
+            </a>
         </li>
 
         <li class="burger-menu__item">
-          <a href="#">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/cart.svg" alt="Корзина">
-            Корзина
-          </a>
+            <a href="#" style="color: <?php echo esc_attr($text_color); ?>;"
+               data-text-color="<?php echo esc_attr($text_color); ?>"
+               data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+               data-hover-text="<?php echo esc_attr($hover_text_color); ?>">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/cart.svg" alt="Корзина">
+                Корзина
+            </a>
         </li>
 
         <li class="burger-menu__item">
-          <a href="#">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/heart.svg" alt="Список желаний">
-            Список желаний
-          </a>
+            <a href="#" style="color: <?php echo esc_attr($text_color); ?>;"
+               data-text-color="<?php echo esc_attr($text_color); ?>"
+               data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+               data-hover-text="<?php echo esc_attr($hover_text_color); ?>">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/heart.svg" alt="Список желаний">
+                Список желаний
+            </a>
         </li>
 
         <li class="burger-menu__item">
-          <a href="#">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/history.svg" alt="Просмотренные товары">
-            Просмотренные товары
-          </a>
+            <a href="#" style="color: <?php echo esc_attr($text_color); ?>;"
+               data-text-color="<?php echo esc_attr($text_color); ?>"
+               data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+               data-hover-text="<?php echo esc_attr($hover_text_color); ?>">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/history.svg" alt="Просмотренные товары">
+                Просмотренные товары
+            </a>
         </li>
 
         <li class="burger-menu__item">
-          <a href="#">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/reviews.svg" alt="Отзывы">
-            Отзывы
-          </a>
+            <a href="#" style="color: <?php echo esc_attr($text_color); ?>;"
+               data-text-color="<?php echo esc_attr($text_color); ?>"
+               data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+               data-hover-text="<?php echo esc_attr($hover_text_color); ?>">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/reviews.svg" alt="Отзывы">
+                Отзывы
+            </a>
         </li>
 
         <li class="burger-menu__item">
-          <a href="#">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/parcel.svg" alt="Посылки">
-            Посылки
-          </a>
+            <a href="#" style="color: <?php echo esc_attr($text_color); ?>;"
+               data-text-color="<?php echo esc_attr($text_color); ?>"
+               data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+               data-hover-text="<?php echo esc_attr($hover_text_color); ?>">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/parcel.svg" alt="Посылки">
+                Посылки
+            </a>
         </li>
 
         <li class="burger-menu__item">
-          <a href="#">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/wallet.svg" alt="Кошелёк">
-            Кошелёк
-          </a>
+            <a href="#" style="color: <?php echo esc_attr($text_color); ?>;"
+               data-text-color="<?php echo esc_attr($text_color); ?>"
+               data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+               data-hover-text="<?php echo esc_attr($hover_text_color); ?>">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/wallet.svg" alt="Кошелёк">
+                Кошелёк
+            </a>
         </li>
 
         <li class="burger-menu__item">
-          <a href="#">
-            <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/subscribe.svg" alt="Подписки">
-            Подписки
-          </a>
+            <a href="#" style="color: <?php echo esc_attr($text_color); ?>;"
+               data-text-color="<?php echo esc_attr($text_color); ?>"
+               data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+               data-hover-text="<?php echo esc_attr($hover_text_color); ?>">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/icons/subscribe.svg" alt="Подписки">
+                Подписки
+            </a>
         </li>
-
-      </ul>
-    </nav>
+        <?php endif; ?>
+    </ul>
+</nav>
 
     <div class="overlay" id="overlay"></div>
 
