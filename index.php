@@ -6,15 +6,19 @@
 <nav class="burger-menu" id="burgerMenu" style="background-color: <?php echo get_field('burger_menu_bg_color') ?: '#fff'; ?>;">
     <ul class="burger-menu__list">
         <?php
-        // Динамические пункты меню из ACF
+        $text_color = get_field('burger_menu_text_color') ?: '#333';
+        $hover_bg_color = get_field('burger_menu_hover_bg_color') ?: '#FF9500';
+        $hover_text_color = get_field('burger_menu_hover_text_color') ?: '#fff';
+
+        // Сначала показываем кастомные пункты из ACF
         if (have_rows('burger_menu_items')) :
-            $text_color = get_field('burger_menu_text_color') ?: '#333';
-            $hover_bg_color = get_field('burger_menu_hover_bg_color') ?: '#FF9500';
-            $hover_text_color = get_field('burger_menu_hover_text_color') ?: '#fff';
             while (have_rows('burger_menu_items')) : the_row();
                 $icon = get_sub_field('menu_icon');
                 $text = get_sub_field('menu_text');
                 $link = get_sub_field('menu_link');
+
+                // Показываем только если заполнены иконка и текст
+                if ($icon && $text) :
         ?>
         <li class="burger-menu__item">
             <a href="<?php echo esc_url($link ?: '#'); ?>"
@@ -29,12 +33,12 @@
             </a>
         </li>
         <?php
+                endif;
             endwhile;
-        else :
-            // Fallback - статическое меню если ACF не настроено
-            $text_color = get_field('burger_menu_text_color') ?: '#333';
-            $hover_bg_color = get_field('burger_menu_hover_bg_color') ?: '#FF9500';
-            $hover_text_color = get_field('burger_menu_hover_text_color') ?: '#fff';
+        endif;
+
+        // Затем показываем статическое меню (только если нет кастомных пунктов)
+        if (!have_rows('burger_menu_items') || count(get_field('burger_menu_items')) === 0) :
         ?>
         <li class="burger-menu__item">
             <a href="#" style="color: <?php echo esc_attr($text_color); ?>;"

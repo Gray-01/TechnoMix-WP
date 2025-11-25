@@ -64,3 +64,21 @@ add_action('wp_enqueue_scripts', 'TechnoMix_enqueue_assets');
 add_theme_support('post-thumbnails');
 add_theme_support('title-tag');
 add_theme_support('custom-logo');
+
+// Разрешаем загрузку SVG файлов
+function TechnoMix_allow_svg_upload($mimes) {
+    $mimes['svg'] = 'image/svg+xml';
+    return $mimes;
+}
+add_filter('upload_mimes', 'TechnoMix_allow_svg_upload');
+
+// Исправляем MIME тип для SVG
+function TechnoMix_fix_svg_mime_type($data, $file, $filename, $mimes) {
+    $filetype = wp_check_filetype($filename, $mimes);
+    if ($filetype['ext'] === 'svg') {
+        $data['ext'] = 'svg';
+        $data['type'] = 'image/svg+xml';
+    }
+    return $data;
+}
+add_filter('wp_check_filetype_and_ext', 'TechnoMix_fix_svg_mime_type', 10, 4);
