@@ -143,9 +143,14 @@
         <span></span>
       </button>
 
-      <div class="header__logo">
-        <a href="<?php echo esc_url(home_url('/')); ?>">TechnoMix</a>
-      </div>
+<div class="header__logo">
+    <a href="<?php echo esc_url(home_url('/')); ?>"
+       style="color: <?php echo esc_attr(get_field('logo_color') ?: '#333'); ?>;
+              font-size: <?php echo esc_attr((get_field('logo_font_size_new') ?: '22') . 'px'); ?>;
+              font-weight: <?php echo esc_attr((int)get_field('logo_font_weight') ?: '700'); ?>;">
+        <?php echo esc_html(get_field('logo_text') ?: 'TechnoMix'); ?>
+    </a>
+</div>
 
       <form class="header__search" action="<?php echo esc_url(home_url('/')); ?>" method="get">
         <input type="text" class="header__input" placeholder="Что вы ищете?" name="s" value="<?php echo get_search_query(); ?>">

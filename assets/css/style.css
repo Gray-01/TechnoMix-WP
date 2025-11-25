@@ -172,10 +172,18 @@ body {
 /* логотип */
 .header__logo a {
     font-family: 'RobotoSerif', sans-serif;
-    font-size: 22px;
-    font-weight: 700;
-    color: #333;
+    /* font-size: 22px; УДАЛИ - теперь управляется через ACF */
+    /* font-weight: 700; УДАЛИ - теперь управляется через ACF */
+    /* color: #333; УДАЛИ - теперь управляется через ACF */
+    text-decoration: none;
+    transition: color 0.3s ease;
 }
+
+/* Ховер эффект оставляем */
+.header__logo a:hover {
+    opacity: 0.8;
+}
+
 
 /* поиск */
 .header__search {
