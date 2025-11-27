@@ -170,126 +170,76 @@
       <section class="catalog-section">
 
         <aside class="sidebar">
-          <nav class="sidebar__nav">
-            <ul class="sidebar__menu">
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/energy.svg" alt="Энергообеспечение">
-                  </div>
-                  <span class="sidebar__text">Энергообеспечение</span>
-                </a>
-              </li>
+    <nav class="sidebar__nav">
+        <ul class="sidebar__menu">
+            <?php
+            // Получаем цвета из ACF
+            $text_color = get_field('sidebar_menu_text_color') ?: '#333';
+            $hover_bg_color = get_field('sidebar_menu_hover_bg_color') ?: '#f8f8f8';
+            $hover_text_color = get_field('sidebar_menu_hover_text_color') ?: '#FF9500';
+            $hover_icon_color = get_field('sidebar_menu_hover_icon_color') ?: '#FF9500';
 
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/smartphones.svg" alt="Смартфоны">
-                  </div>
-                  <span class="sidebar__text">Смартфоны и телефоны</span>
-                </a>
-              </li>
+            // Динамические пункты меню из ACF
+            if (have_rows('sidebar_menu_items')) :
+                while (have_rows('sidebar_menu_items')) : the_row();
+                    $icon = get_sub_field('sidebar_menu_icon');
+                    $text = get_sub_field('sidebar_menu_text');
+                    $link = get_sub_field('sidebar_menu_link');
 
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/laptops.svg" alt="Ноутбуки">
-                  </div>
-                  <span class="sidebar__text">Ноутбуки и планшеты</span>
+                    // Показываем только если заполнены иконка и текст
+                    if ($icon && $text) :
+            ?>
+            <li class="sidebar__item">
+                <a href="<?php echo esc_url($link ?: '#'); ?>" class="sidebar__link"
+                   style="color: <?php echo esc_attr($text_color); ?>;"
+                   data-text-color="<?php echo esc_attr($text_color); ?>"
+                   data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+                   data-hover-text="<?php echo esc_attr($hover_text_color); ?>"
+                   data-hover-icon="<?php echo esc_attr($hover_icon_color); ?>">
+                    <div class="sidebar__icon">
+                        <?php if ($icon): ?>
+                            <img src="<?php echo esc_url($icon); ?>" alt="<?php echo esc_attr(wp_strip_all_tags($text)); ?>">
+                        <?php endif; ?>
+                    </div>
+                    <span class="sidebar__text"><?php echo apply_filters('the_content', $text); ?></span>
                 </a>
-              </li>
+            </li>
+            <?php
+                    endif;
+                endwhile;
+            else :
+                // Fallback - статическое меню если ACF не настроено
+            ?>
+            <li class="sidebar__item">
+                <a href="#" class="sidebar__link" style="color: <?php echo esc_attr($text_color); ?>;"
+                   data-text-color="<?php echo esc_attr($text_color); ?>"
+                   data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+                   data-hover-text="<?php echo esc_attr($hover_text_color); ?>"
+                   data-hover-icon="<?php echo esc_attr($hover_icon_color); ?>">
+                    <div class="sidebar__icon">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/energy.svg" alt="Энергообеспечение">
+                    </div>
+                    <span class="sidebar__text">Энергообеспечение</span>
+                </a>
+            </li>
 
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/kitchen.svg" alt="Кухонная техника">
-                  </div>
-                  <span class="sidebar__text">Техника для кухни</span>
+            <li class="sidebar__item">
+                <a href="#" class="sidebar__link" style="color: <?php echo esc_attr($text_color); ?>;"
+                   data-text-color="<?php echo esc_attr($text_color); ?>"
+                   data-hover-bg="<?php echo esc_attr($hover_bg_color); ?>"
+                   data-hover-text="<?php echo esc_attr($hover_text_color); ?>"
+                   data-hover-icon="<?php echo esc_attr($hover_icon_color); ?>">
+                    <div class="sidebar__icon">
+                        <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/smartphones.svg" alt="Смартфоны">
+                    </div>
+                    <span class="sidebar__text">Смартфоны и телефоны</span>
                 </a>
-              </li>
+            </li>
 
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/home.svg" alt="Техника для дома">
-                  </div>
-                  <span class="sidebar__text">Техника для дома</span>
-                </a>
-              </li>
-
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/tv.svg" alt="Телевизоры">
-                  </div>
-                  <span class="sidebar__text">Телевизоры</span>
-                </a>
-              </li>
-
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/smartwatch.svg" alt="Смарт-часы">
-                  </div>
-                  <span class="sidebar__text">Смарт-часы</span>
-                </a>
-              </li>
-
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/audio.svg" alt="Аудио техника">
-                  </div>
-                  <span class="sidebar__text">Аудио, фото, видео</span>
-                </a>
-              </li>
-
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/gaming.svg" alt="Игровые консоли">
-                  </div>
-                  <span class="sidebar__text">Игровые консоли</span>
-                </a>
-              </li>
-
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/beauty.svg" alt="Красота и здоровье">
-                  </div>
-                  <span class="sidebar__text">Красота и здоровье</span>
-                </a>
-              </li>
-
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/dishes.svg" alt="Посуда">
-                  </div>
-                  <span class="sidebar__text">Посуда</span>
-                </a>
-              </li>
-
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/chemistry.svg" alt="Бытовая химия">
-                  </div>
-                  <span class="sidebar__text">Бытовая химия</span>
-                </a>
-              </li>
-
-              <li class="sidebar__item">
-                <a href="#" class="sidebar__link">
-                  <div class="sidebar__icon">
-                    <img src="<?php echo get_template_directory_uri(); ?>/assets/images/sidebar/kids.svg" alt="Детские товары">
-                  </div>
-                  <span class="sidebar__text">Детские товары</span>
-                </a>
-              </li>
-            </ul>
-          </nav>
+            <!-- Остальные статические пункты меню... -->
+            <?php endif; ?>
+        </ul>
+    </nav>
         </aside>
 
         <!-- КАРУСЕЛЬ -->

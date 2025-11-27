@@ -41,6 +41,16 @@ function TechnoMix_enqueue_assets() {
         true
     );
 
+    // КОД ДЛЯ SIDEBAR MENU
+$sidebar_js_path = get_template_directory() . '/assets/js/sidebar-menu.js';
+wp_enqueue_script(
+    'TechnoMix-sidebar-menu',
+    get_template_directory_uri() . '/assets/js/sidebar-menu.js',
+    array('TechnoMix-main'), // Зависит от main.js
+    file_exists($sidebar_js_path) ? filemtime($sidebar_js_path) : null,
+    true
+);
+
     //CAROUSEL
 $carousel_js_path = get_template_directory() . '/assets/js/carousel.js';
 wp_enqueue_script(

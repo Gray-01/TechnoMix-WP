@@ -172,9 +172,9 @@ body {
 /* логотип */
 .header__logo a {
     font-family: 'RobotoSerif', sans-serif;
-    /* font-size: 22px; УДАЛИ - теперь управляется через ACF */
-    /* font-weight: 700; УДАЛИ - теперь управляется через ACF */
-    /* color: #333; УДАЛИ - теперь управляется через ACF */
+    /* font-size: 22px; теперь управляется через ACF */
+    /* font-weight: 700; теперь управляется через ACF */
+    /* color: #333; теперь управляется через ACF */
     text-decoration: none;
     transition: color 0.3s ease;
 }
