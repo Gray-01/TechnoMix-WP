@@ -778,7 +778,7 @@ body {
     transform: scale(0.95);
 }
 
-/* Градиенты для карточек */
+/* Градиенты для карточек  в админке wp*/
 .about-card.gradient-red-blue:before {
     background: linear-gradient(#ff0000, #0037ff);
 }
@@ -789,4 +789,25 @@ body {
 
 .about-card.gradient-purple-pink:before {
     background: linear-gradient(#af36ff, #ff0070);
+}
+
+/* Дополнительные кастомные градиенты для кнопок админка wp */
+.btn-custom_1 {
+    background-image: linear-gradient(45deg, #2196F3, #4CAF50, #2196F3);
+}
+
+.btn-custom_2 {
+    background-image: linear-gradient(45deg, #FFD700, #FF5722, #FFD700);
+}
+
+.btn-custom_3 {
+    background-image: linear-gradient(45deg, #00BCD4, #2196F3, #00BCD4);
+}
+
+/* Исправляем стиль для ссылок */
+.buttons-container a.gradient-btn {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }

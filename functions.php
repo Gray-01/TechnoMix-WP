@@ -236,3 +236,72 @@ if (function_exists('acf_add_local_field_group')) {
         'instruction_placement' => 'label',
     ));
 }
+
+// Custom Post Type для кнопок
+function create_gradient_buttons_post_type() {
+    register_post_type('gradient_buttons',
+        array(
+            'labels' => array(
+                'name' => 'Градиентные кнопки',
+                'singular_name' => 'Кнопка',
+                'add_new' => 'Добавить кнопку',
+                'add_new_item' => 'Добавить новую кнопку',
+                'edit_item' => 'Редактировать кнопку',
+                'new_item' => 'Новая кнопка'
+            ),
+            'public' => true,
+            'has_archive' => false,
+            'menu_icon' => 'dashicons-button',
+            'supports' => array('title'),
+            'show_in_rest' => true,
+            'publicly_queryable' => false,
+        )
+    );
+}
+add_action('init', 'create_gradient_buttons_post_type');
+
+// ACF поля для кнопок
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
+        'key' => 'group_gradient_buttons',
+        'title' => 'Настройки кнопки',
+        'fields' => array(
+            array(
+                'key' => 'field_button_url',
+                'label' => 'Ссылка кнопки',
+                'name' => 'button_url',
+                'type' => 'url',
+                'required' => 1,
+                'default_value' => '#'
+            ),
+            array(
+                'key' => 'field_button_gradient',
+                'label' => 'Градиент кнопки',
+                'name' => 'button_gradient',
+                'type' => 'select',
+                'choices' => array(
+                    'tech' => 'Сине-фиолетовый (Техника)',
+                    'gadgets' => 'Оранжево-розовый (Гаджеты)',
+                    'kitchen' => 'Зелено-голубой (Кухня)',
+                    'entertainment' => 'Красно-фиолетовый (ТВ)',
+                    'computers' => 'Серо-коричневый (Компьютеры)',
+                    'audio' => 'Фиолетово-розовый (Аудио)',
+                    'custom_1' => 'Кастомный 1 (Сине-зеленый)',
+                    'custom_2' => 'Кастомный 2 (Золото-красный)',
+                    'custom_3' => 'Кастомный 3 (Бирюзово-синий)'
+                ),
+                'default_value' => 'tech',
+                'required' => 1,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'gradient_buttons',
+                ),
+            ),
+        ),
+    ));
+}

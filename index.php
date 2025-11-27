@@ -360,18 +360,46 @@
 </section>
 
       <!-- Gradient Buttons Section -->
-      <section class="gradient-buttons-section">
-        <div class="main__wrapper">
-          <div class="buttons-container">
-            <button class="gradient-btn btn-tech">Техника для дома</button>
-            <button class="gradient-btn btn-gadgets">Смартфоны и гаджеты</button>
-            <button class="gradient-btn btn-kitchen">Кухонная техника</button>
-            <button class="gradient-btn btn-entertainment">ТВ и развлечения</button>
-            <button class="gradient-btn btn-computers">Ноутбуки и компьютеры</button>
-            <button class="gradient-btn btn-audio">Аудио и наушники</button>
-          </div>
+<section class="gradient-buttons-section">
+    <div class="main__wrapper">
+        <div class="buttons-container">
+            <?php
+            // Получаем кнопки из Custom Post Type
+            $buttons_args = array(
+                'post_type' => 'gradient_buttons',
+                'posts_per_page' => -1,
+                'orderby' => 'date',
+                'order' => 'ASC',
+                'post_status' => 'publish'
+            );
+
+            $buttons = new WP_Query($buttons_args);
+
+            if ($buttons->have_posts()) :
+                while ($buttons->have_posts()) : $buttons->the_post();
+                    $button_url = get_field('button_url') ?: '#';
+                    $button_gradient = get_field('button_gradient') ?: 'tech';
+                    $button_class = 'btn-' . $button_gradient;
+            ?>
+            <a href="<?php echo esc_url($button_url); ?>" class="gradient-btn <?php echo esc_attr($button_class); ?>">
+                <?php the_title(); ?>
+            </a>
+            <?php
+                endwhile;
+                wp_reset_postdata();
+            else :
+                // FALLBACK - статические кнопки
+            ?>
+            <a href="#" class="gradient-btn btn-tech">Техника для дома</a>
+            <a href="#" class="gradient-btn btn-gadgets">Смартфоны и гаджеты</a>
+            <a href="#" class="gradient-btn btn-kitchen">Кухонная техника</a>
+            <a href="#" class="gradient-btn btn-entertainment">ТВ и развлечения</a>
+            <a href="#" class="gradient-btn btn-computers">Ноутбуки и компьютеры</a>
+            <a href="#" class="gradient-btn btn-audio">Аудио и наушники</a>
+            <?php endif; ?>
         </div>
-      </section>
+    </div>
+</section>
 
     </div>
   </main>
