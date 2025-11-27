@@ -243,77 +243,40 @@
         </aside>
 
         <!-- КАРУСЕЛЬ -->
-        <div class="carousel">
-          <div class="carousel__inner">
+   <div class="carousel">
+    <div class="carousel__inner">
+        <?php
+        // Получаем картинки карусели из ACF
+        $carousel_images = get_field('carousel_images');
+        $max_images = 20;
 
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product1.png" alt="Товар 1">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product2.png" alt="Товар 2">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product3.png" alt="Товар 3">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product4.png" alt="Товар 4">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product5.png" alt="Товар 5">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product6.png" alt="Товар 6">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product7.png" alt="Товар 7">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product8.png" alt="Товар 8">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product9.png" alt="Товар 9">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product10.png" alt="Товар 10">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product11.png" alt="Товар 11">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product12.png" alt="Товар 12">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product13.png" alt="Товар 13">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product14.png" alt="Товар 14">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product15.png" alt="Товар 15">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product16.png" alt="Товар 16">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product17.png" alt="Товар 17">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product18.png" alt="Товар 18">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product19.png" alt="Товар 19">
-            </div>
-            <div class="card">
-              <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product20.png" alt="Товар 20">
-            </div>
+        if ($carousel_images && count($carousel_images) > 0) :
+            $limited_images = array_slice($carousel_images, 0, $max_images);
 
-          </div>
+            foreach ($limited_images as $index => $image) :
+        ?>
+            <div class="card">
+                <img src="<?php echo esc_url($image['url']); ?>" alt="<?php echo esc_attr($image['alt'] ?: 'Товар ' . ($index + 1)); ?>">
+            </div>
+        <?php
+            endforeach;
+        else :
+            // Fallback - статические картинки
+            for ($i = 1; $i <= 20; $i++) :
+        ?>
+            <div class="card">
+                <img src="<?php echo get_template_directory_uri(); ?>/assets/images/carousel/product<?php echo $i; ?>.png" alt="Товар <?php echo $i; ?>">
+            </div>
+        <?php
+            endfor;
+        endif;
+        ?>
+    </div>
 
-          <!-- КНОПКИ -->
-          <button class="carousel__btn carousel__btn--prev">&#10094;</button>
-          <button class="carousel__btn carousel__btn--next">&#10095;</button>
-
-        </div>
+    <!-- КНОПКИ -->
+    <button class="carousel__btn carousel__btn--prev">&#10094;</button>
+    <button class="carousel__btn carousel__btn--next">&#10095;</button>
+</div>
 
       </section>
 

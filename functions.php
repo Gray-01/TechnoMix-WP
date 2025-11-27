@@ -92,3 +92,52 @@ function TechnoMix_fix_svg_mime_type($data, $file, $filename, $mimes) {
     return $data;
 }
 add_filter('wp_check_filetype_and_ext', 'TechnoMix_fix_svg_mime_type', 10, 4);
+
+// Добавляем ACF поле для карусели
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
+        'key' => 'group_carousel_images',
+        'title' => 'Изображения карусели',
+        'fields' => array(
+            array(
+                'key' => 'field_carousel_images',
+                'label' => 'Добавьте изображения для карусели',
+                'name' => 'carousel_images',
+                'type' => 'gallery',
+                'instructions' => 'Максимально 20 изображений. Если добавлено больше - будут показаны только первые 20.',
+                'required' => 0,
+                'max' => 20,
+                'return_format' => 'array',
+                'preview_size' => 'medium',
+                'library' => 'all',
+                'wrapper' => array(
+                    'width' => '100%',
+                ),
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'page_template', // Более конкретное условие
+                    'operator' => '==',
+                    'value' => 'template-main.php', // Укажите ваш шаблон
+                ),
+            ),
+            array(
+                array(
+                    'param' => 'page', // Или для конкретной страницы
+                    'operator' => '==',
+                    'value' => '2', // ID главной страницы
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal', // normal, side, acf_after_title
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+        'hide_on_screen' => '',
+        'active' => true,
+        'description' => '',
+    ));
+}
