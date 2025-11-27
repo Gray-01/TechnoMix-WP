@@ -811,3 +811,41 @@ body {
     align-items: center;
     justify-content: center;
 }
+
+/* Стили фона футера */
+.footer.default {
+    background: linear-gradient(to top, #000000, #01042d);
+}
+
+.footer.dark {
+    background: #373841;
+}
+
+.footer.black {
+    background: #000000;
+}
+
+.footer.blue_gradient {
+    background: linear-gradient(to top, #000428, #004e92);
+}
+
+.footer.purple_gradient {
+    background: linear-gradient(to top, #0f0c29, #302b63, #24243e);
+}
+
+/* Стандартные цвета кнопки (по умолчанию) */
+.scroll-to-top {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.scroll-to-top:hover {
+    background: linear-gradient(135deg, #764ba2 0%, #667eea 100%);
+}
+
+.scroll-to-top {
+    position: fixed;
+    /* Важно! */
+    z-index: 1000;
+    /* Важно! */
+    /* остальные стили */
+}

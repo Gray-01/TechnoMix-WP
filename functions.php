@@ -305,3 +305,110 @@ if (function_exists('acf_add_local_field_group')) {
         ),
     ));
 }
+
+// ACF поля для футера
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
+        'key' => 'group_footer_settings',
+        'title' => 'Настройки футера',
+        'fields' => array(
+            array(
+                'key' => 'field_footer_background',
+                'label' => 'Фон футера',
+                'name' => 'footer_background',
+                'type' => 'select',
+                'choices' => array(
+                    'default' => 'Градиент по умолчанию',
+                    'dark' => 'Темный',
+                    'black' => 'Черный',
+                    'blue_gradient' => 'Синий градиент',
+                    'purple_gradient' => 'Фиолетовый градиент'
+                ),
+                'default_value' => 'default',
+                'required' => 0,
+            ),
+            array(
+                'key' => 'field_social_icons',
+                'label' => 'Иконки соцсетей',
+                'name' => 'social_icons',
+                'type' => 'repeater',
+                'instructions' => 'Добавьте иконки социальных сетей',
+                'required' => 0,
+                'layout' => 'table',
+                'button_label' => 'Добавить иконку',
+                'sub_fields' => array(
+                    array(
+                        'key' => 'field_social_icon',
+                        'label' => 'Иконка',
+                        'name' => 'social_icon',
+                        'type' => 'image',
+                        'required' => 1,
+                        'return_format' => 'url',
+                        'preview_size' => 'thumbnail',
+                    ),
+                    array(
+                        'key' => 'field_social_link',
+                        'label' => 'Ссылка',
+                        'name' => 'social_link',
+                        'type' => 'url',
+                        'required' => 1,
+                        'default_value' => '#',
+                    ),
+                    array(
+                        'key' => 'field_social_alt',
+                        'label' => 'Alt текст',
+                        'name' => 'social_alt',
+                        'type' => 'text',
+                        'required' => 1,
+                    ),
+                ),
+            ),
+            array(
+                'key' => 'field_copyright_text',
+                'label' => 'Текст копирайта',
+                'name' => 'copyright_text',
+                'type' => 'text',
+                'default_value' => '© {year}. Все права защищены.',
+                'instructions' => 'Используйте {year} для автоматической подстановки текущего года',
+                'required' => 0,
+            ),
+            array(
+                'key' => 'field_scroll_button_color',
+                'label' => 'Цвет кнопки "Наверх"',
+                'name' => 'scroll_button_color',
+                'type' => 'color_picker',
+                'default_value' => '#667eea',
+                'required' => 0,
+            ),
+            array(
+                'key' => 'field_scroll_button_hover',
+                'label' => 'Цвет кнопки "Наверх" при наведении',
+                'name' => 'scroll_button_hover',
+                'type' => 'color_picker',
+                'default_value' => '#764ba2',
+                'required' => 0,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'options_page',
+                    'operator' => '==',
+                    'value' => 'footer-settings',
+                ),
+            ),
+        ),
+    ));
+}
+
+// Создаем страницу настроек футера в админке
+if (function_exists('acf_add_options_page')) {
+    acf_add_options_page(array(
+        'page_title' => 'Настройки футера',
+        'menu_title' => 'Футер',
+        'menu_slug' => 'footer-settings',
+        'capability' => 'edit_posts',
+        'redirect' => false,
+        'icon_url' => 'dashicons-admin-generic'
+    ));
+}
