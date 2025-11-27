@@ -777,3 +777,16 @@ body {
 .scroll-to-top:active {
     transform: scale(0.95);
 }
+
+/* Градиенты для карточек */
+.about-card.gradient-red-blue:before {
+    background: linear-gradient(#ff0000, #0037ff);
+}
+
+.about-card.gradient-yellow-cyan:before {
+    background: linear-gradient(#d8ff00, #17f4ff);
+}
+
+.about-card.gradient-purple-pink:before {
+    background: linear-gradient(#af36ff, #ff0070);
+}

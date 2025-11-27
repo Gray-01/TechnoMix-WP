@@ -279,41 +279,85 @@
 </div>
 
       </section>
+<section class="about-section">
+      <div class="main__wrapper">
+        <div class="about-container">
+            <?php
+            // Получаем карточки из Custom Post Type
+            $about_cards_args = array(
+                'post_type' => 'about_cards',
+                'posts_per_page' => -1,
+                'orderby' => 'date',
+                'order' => 'ASC',
+                'post_status' => 'publish'
+            );
 
-      <section class="about-section">
-        <div class="main__wrapper">
-          <div class="about-container">
+            $about_cards = new WP_Query($about_cards_args);
 
-            <div class="about-card">
-              <div class="about-content">
-                <h3>О TechnoMix</h3>
-                <p>TechnoMix — ведущий интернет-магазин электроники с 2015 года. Мы предлагаем широкий ассортимент
-                  качественной техники от проверенных брендов по доступным ценам.</p>
-                <button>Узнать больше</button>
-              </div>
+            if ($about_cards->have_posts()) :
+                $card_index = 0;
+                while ($about_cards->have_posts()) : $about_cards->the_post();
+                    $card_index++;
+                    $button_text = get_field('card_button_text') ?: 'Узнать больше';
+                    $gradient = get_field('card_gradient') ?: 'red_blue';
+                    $preview_text = get_field('card_preview_text') ?: get_the_excerpt();
+
+                    // Определяем класс градиента
+                    $gradient_class = '';
+                    switch($gradient) {
+                        case 'red_blue':
+                            $gradient_class = 'gradient-red-blue';
+                            break;
+                        case 'yellow_cyan':
+                            $gradient_class = 'gradient-yellow-cyan';
+                            break;
+                        case 'purple_pink':
+                            $gradient_class = 'gradient-purple-pink';
+                            break;
+                    }
+            ?>
+            <div class="about-card <?php echo esc_attr($gradient_class); ?>">
+                <div class="about-content">
+                    <h3><?php the_title(); ?></h3>
+                    <p><?php echo esc_html($preview_text); ?></p>
+                    <button onclick="window.location.href='<?php the_permalink(); ?>'">
+                        <?php echo esc_html($button_text); ?>
+                    </button>
+                </div>
+            </div>
+            <?php
+                endwhile;
+                wp_reset_postdata();
+            else :
+                // FALLBACK - статические карточки если нет созданных
+            ?>
+            <div class="about-card gradient-red-blue">
+                <div class="about-content">
+                    <h3>О TechnoMix</h3>
+                    <p>TechnoMix — ведущий интернет-магазин электроники с 2015 года. Мы предлагаем широкий ассортимент качественной техники от проверенных брендов по доступным ценам.</p>
+                    <button onclick="window.location.href='#'">Узнать больше</button>
+                </div>
             </div>
 
-            <div class="about-card">
-              <div class="about-content">
-                <h3>Как сделать заказ</h3>
-                <p>Просто выберите товар, добавьте в корзину и оформите заказ. Наш менеджер свяжется с вами для
-                  подтверждения в течение 15 минут.</p>
-                <button>Инструкция</button>
-              </div>
+            <div class="about-card gradient-yellow-cyan">
+                <div class="about-content">
+                    <h3>Как сделать заказ</h3>
+                    <p>Просто выберите товар, добавьте в корзину и оформите заказ. Наш менеджер свяжется с вами для подтверждения в течение 15 минут.</p>
+                    <button onclick="window.location.href='#'">Инструкция</button>
+                </div>
             </div>
 
-            <div class="about-card">
-              <div class="about-content">
-                <h3>Гарантии и сервис</h3>
-                <p>Все товары имеют официальную гарантию до 3 лет. Бесплатная доставка по городу, сервисное обслуживание
-                  и техническая поддержка 24/7.</p>
-                <button>Подробнее</button>
-              </div>
+            <div class="about-card gradient-purple-pink">
+                <div class="about-content">
+                    <h3>Гарантии и сервис</h3>
+                    <p>Все товары имеют официальную гарантию до 3 лет. Бесплатная доставка по городу, сервисное обслуживание и техническая поддержка 24/7.</p>
+                    <button onclick="window.location.href='#'">Подробнее</button>
+                </div>
             </div>
-
-          </div>
+            <?php endif; ?>
         </div>
-      </section>
+    </div>
+</section>
 
       <!-- Gradient Buttons Section -->
       <section class="gradient-buttons-section">

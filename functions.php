@@ -141,3 +141,98 @@ if (function_exists('acf_add_local_field_group')) {
         'description' => '',
     ));
 }
+
+// Создаем Custom Post Type для карточек "О нас"
+function create_about_cards_post_type() {
+    register_post_type('about_cards',
+        array(
+            'labels' => array(
+                'name' => 'Карточки О компании',
+                'singular_name' => 'Карточка',
+                'add_new' => 'Добавить карточку',
+                'add_new_item' => 'Добавить новую карточку',
+                'edit_item' => 'Редактировать карточку',
+                'new_item' => 'Новая карточка',
+                'view_item' => 'Просмотреть карточку',
+                'search_items' => 'Поиск карточек',
+                'not_found' => 'Карточки не найдены',
+                'not_found_in_trash' => 'В корзине карточки не найдены'
+            ),
+            'public' => true,
+            'has_archive' => false,
+            'menu_icon' => 'dashicons-id',
+            'supports' => array('title', 'editor', 'thumbnail', 'excerpt'),
+            'show_in_rest' => true,
+            'publicly_queryable' => true, // Важно для single страниц
+            'show_ui' => true,
+            'show_in_menu' => true,
+            'query_var' => true,
+            'rewrite' => array('slug' => 'about-cards'),
+        )
+    );
+}
+add_action('init', 'create_about_cards_post_type');
+
+// ACF поля для карточек - ТОЛЬКО ОДИН БЛОК!
+if (function_exists('acf_add_local_field_group')) {
+    acf_add_local_field_group(array(
+        'key' => 'group_about_cards',
+        'title' => 'Настройки карточки',
+        'fields' => array(
+            array(
+                'key' => 'field_card_button_text',
+                'label' => 'Текст кнопки',
+                'name' => 'card_button_text',
+                'type' => 'text',
+                'default_value' => 'Узнать больше',
+                'required' => 1,
+            ),
+            array(
+                'key' => 'field_card_gradient',
+                'label' => 'Градиент обводки',
+                'name' => 'card_gradient',
+                'type' => 'select',
+                'choices' => array(
+                    'red_blue' => 'Красный-Синий',
+                    'yellow_cyan' => 'Желтый-Голубой',
+                    'purple_pink' => 'Фиолетовый-Розовый',
+                ),
+                'default_value' => 'red_blue',
+                'required' => 1,
+            ),
+            array(
+                'key' => 'field_card_preview_text',
+                'label' => 'Текст превью (короткий)',
+                'name' => 'card_preview_text',
+                'type' => 'textarea',
+                'instructions' => 'Короткий текст который будет отображаться на карточке',
+                'required' => 1,
+                'maxlength' => 200,
+            ),
+            array(
+                'key' => 'field_card_full_description',
+                'label' => 'Полное описание',
+                'name' => 'card_full_description',
+                'type' => 'wysiwyg',
+                'instructions' => 'Полное описание которое будет отображаться на отдельной странице карточки',
+                'required' => 0,
+                'toolbar' => 'basic',
+                'media_upload' => 0,
+            ),
+        ),
+        'location' => array(
+            array(
+                array(
+                    'param' => 'post_type',
+                    'operator' => '==',
+                    'value' => 'about_cards',
+                ),
+            ),
+        ),
+        'menu_order' => 0,
+        'position' => 'normal',
+        'style' => 'default',
+        'label_placement' => 'top',
+        'instruction_placement' => 'label',
+    ));
+}
